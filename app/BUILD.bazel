@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+
+go_binary(
+    name = "app",
+    embed = [":app_lib"],
+    visibility = ["//visibility:public"],
+    x_defs = {
+        "github.com/wildlink/deviceapi/delivery/common/config.githash": "{STABLE_GIT_COMMIT}",
+        "github.com/wildlink/deviceapi/delivery/common/middleware.githash": "{STABLE_GIT_COMMIT}",
+        "github.com/wildlink/deviceapi/delivery/common/middleware.buildstamp": "{VOLATILE_TIMESTAMP}",
+    },
+)
